@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        button {
+            width: 150px;
+            color: white;
+            height: 150px;
+            font-size: 100px;
+            background-color: #A9A9A9;
+            font-family: Arial, Helvetica, sans-serif;
+            font: "Helvetica Neue";
+            border-radius: 12px;
+        }
+
+        #display {
+            font-size: 200px;
+            height: 200px;
+            width: 1700px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <!-- Display for the calculator -->
+    <input type="text" id="display" readonly>
+    <br>
+    <!-- Buttons for the calculator -->
+    <button onclick="appendToDisplay('7')">7</button>
+    <button onclick="appendToDisplay('8')">8</button>
+    <button onclick="appendToDisplay('9')">9</button>
+    <button onclick="appendToDisplay('/')">/</button>
+    <br>
+    <button onclick="appendToDisplay('4')">4</button>
+    <button onclick="appendToDisplay('5')">5</button>
+    <button onclick="appendToDisplay('6')">6</button>
+    <button onclick="appendToDisplay('*')">*</button>
+    <br>
+    <button onclick="appendToDisplay('1')">1</button>
+    <button onclick="appendToDisplay('2')">2</button>
+    <button onclick="appendToDisplay('3')">3</button>
+    <button onclick="appendToDisplay('-')">-</button>
+    <br>
+    <button onclick="appendToDisplay('0')">0</button>
+    <button onclick="appendToDisplay('.')">.</button>
+    <button onclick="calculate()">=</button>
+    <button onclick="appendToDisplay('+')">+</button>
+    <br>
+    <button onclick="clearDisplay()">C</button>
+    
+    <script>
+        // This stores the full current expression as a string.
+        let expression = ""; 
+        
+        // Append numbers and operators to the display and expression.
+        function appendToDisplay(value) {
+            expression += value;
+            document.getElementById('display').value = expression;
+        }
+
+        // Clear the display and reset the expression.
+        function clearDisplay() {
+            expression = "";
+            document.getElementById('display').value = "";
+        }
+
+        // Calculate the result of the current expression.
+        function calculate() {
+            try {
+                // Use the built-in eval() function to evaluate the expression.
+                let result = eval(expression);
+                document.getElementById('display').value = result;
+                expression = result; // Update the expression with the result.
+            } catch (error) {
+                // If there's an error (e.g., invalid input), display an error message.
+                document.getElementById('display').value = "Error";
+                expression = ""; // Reset the expression.
+            }
+        }
+    </script>
+</body>
+</html>
